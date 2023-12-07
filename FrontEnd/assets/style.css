@@ -93,6 +93,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
@@ -125,6 +126,29 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filter {
+	margin: 1em auto;
+	text-align: center;
+}
+
+.filter button {
+	margin: 10px;
+	padding: 10px 15px;
+	border-radius: 60px;
+	font-size: 16px;
+	color: #1D6154;
+	font-weight: 700;
+	background-color:#FFFEF8;
+	border: 1px solid #1D6154;
+	cursor: pointer;
+}
+
+.filter button:hover {
+	color: #FFFFFF;
+	background-color: #1D6154;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

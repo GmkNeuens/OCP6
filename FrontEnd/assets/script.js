@@ -2,13 +2,23 @@ async function worksImport() {
     const response = await fetch("http://localhost:5678/api/works/", {
         method: 'GET'
     });
-    let data = await response.json();
-    data.forEach((projet) => {
-        worksDisplay(projet)
+    let worksData = await response.json();
+    worksData.forEach((projet) => {
+        projectsDisplay(projet)
     })
 }
 
-const worksDisplay = (projet) => {
+async function categoriesImport() {
+    const response = await  fetch("http://localhost:5678/api/categories/", {
+        method: 'GET'
+    });
+    let categoriesData = await response.json();
+    categoriesData.forEach((category) => {
+        filtersDisplay(category)
+    })
+}
+
+const projectsDisplay = (projet) => {
     let gallery = document.querySelector(".gallery");
     let figure = document.createElement('figure');
     let img = document.createElement('img');
@@ -21,4 +31,16 @@ const worksDisplay = (projet) => {
     figcaption.textContent = projet.title;
 };
 
+let filtersContainer = document.querySelector(".filter",".category");
+let defaultButton = document.createElement('button');
+defaultButton.textContent = 'Tous';
+filtersContainer.appendChild(defaultButton);
+const filtersDisplay = (category) => {
+    let filterButton = document.createElement('button');
+    filterButton.textContent = category.name;
+    filtersContainer.appendChild(filterButton)
+};
+
+
 worksImport();
+categoriesImport();

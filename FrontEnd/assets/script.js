@@ -18,12 +18,15 @@ async function categoriesImport() {
     })
 }
 
+const gallery = document.querySelector(".gallery");
+const filtersContainer = document.querySelector(".filter",".category");
+
 const projectsDisplay = (projet) => {
-    let gallery = document.querySelector(".gallery");
     let figure = document.createElement('figure');
     let img = document.createElement('img');
     let figcaption = document.createElement('figcaption');
     gallery.appendChild(figure);
+    figure.setAttribute('projectcategoryid', projet.category.id);
     figure.appendChild(img);
     img.src = projet.imageUrl;
     img.alt = projet.title;
@@ -31,16 +34,29 @@ const projectsDisplay = (projet) => {
     figcaption.textContent = projet.title;
 };
 
-let filtersContainer = document.querySelector(".filter",".category");
 let defaultButton = document.createElement('button');
 defaultButton.textContent = 'Tous';
+defaultButton.addEventListener('click', () => {
+    galleryFilter("all")
+});
 filtersContainer.appendChild(defaultButton);
+
 const filtersDisplay = (category) => {
     let filterButton = document.createElement('button');
     filterButton.textContent = category.name;
+    filterButton.addEventListener('click', () => {
+        galleryFilter(category.id)
+    });
     filtersContainer.appendChild(filterButton)
 };
 
-
 worksImport();
 categoriesImport();
+
+const galleryFilter = (categoryId) => {
+    const figures = document.querySelectorAll('figure');
+    figures.forEach((figure) => {
+        const workCategoryId = figure.getAttribute('projectcategoryid');
+        figure.style.display = workCategoryId == categoryId || categoryId == "all" ? 'block' : 'none';
+    })
+}

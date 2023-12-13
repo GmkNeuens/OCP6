@@ -46,8 +46,8 @@ form.addEventListener("submit", async (event) => {
             localStorage.setItem("token", token);
             window.location.href = "./index.html";
         } else {
-            email.classList.remove("wronginputstyle");
-            emailInputComment.style.display = "none";
+            email.classList.add("wronginputstyle");
+            emailInputComment.style.display = "block";
             password.classList.add("wronginputstyle");
             passwordInputComment.style.display = "block";
         }

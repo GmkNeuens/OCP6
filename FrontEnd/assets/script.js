@@ -1,3 +1,20 @@
+function connexionStatus() {
+    const token = localStorage.getItem("token");
+    return !!token
+}
+
+function logButtonCreation() {
+    let navBarElement = document.querySelector(".navbar");
+    let logButtonElement = document.createElement("li");
+    let instagramIcon = document.querySelector(".instagramicon");
+    let logButtonContent = document.createTextNode("login");
+    navBarElement.appendChild(logButtonElement);
+    logButtonElement.appendChild(logButtonContent);
+    logButtonElement = navBarElement.insertBefore(logButtonElement, instagramIcon);
+}
+
+logButtonCreation();
+
 async function worksImport() {
     const response = await fetch("http://localhost:5678/api/works/", {
         method: "GET"
@@ -6,7 +23,7 @@ async function worksImport() {
     worksData.forEach((projet) => {
         projectsDisplay(projet)
     })
-}
+};
 
 async function categoriesImport() {
     const response = await  fetch("http://localhost:5678/api/categories/", {
@@ -16,7 +33,7 @@ async function categoriesImport() {
     categoriesData.forEach((category) => {
         filtersDisplay(category)
     })
-}
+};
 
 const gallery = document.querySelector(".gallery");
 const filtersContainer = document.querySelector(".filter",".category");

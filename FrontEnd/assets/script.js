@@ -5,8 +5,8 @@ function connexionStatus() {
 
 function logButtonCreation() {
     let navBarElement = document.querySelector(".navbar");
-    let logButtonElement = document.createElement("li");
     let instagramIcon = document.querySelector(".instagramicon");
+    let logButtonElement = document.createElement("li");
     let logButtonContent = document.createTextNode("login");
     navBarElement.appendChild(logButtonElement);
     logButtonElement.appendChild(logButtonContent);

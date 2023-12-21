@@ -1,9 +1,13 @@
+/* VARIABLES GLOBALES */
+
 const loginButton = document.querySelector('ul.navbar li a');
 const form = document.querySelector("form");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const emailInputComment = document.querySelector(".emailinputcomment");
 const passwordInputComment = document.querySelector(".passwordinputcomment");
+
+/* SEQUENCE DE CODE */
 
 email.addEventListener("change", (event) => {
     const emailValue = event.target.value;

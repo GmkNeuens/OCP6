@@ -57,11 +57,28 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+.editbanner {
+	background-color: #000000;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.editbannertitle {
+	margin-left: 10px;
+	color: #FFFFFF;
+	font-family: Work Sans;
+	font-size: 16px;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
@@ -99,10 +116,10 @@ nav li {
 	font-size: 1.2em;
 	cursor: pointer;
 }
-
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;

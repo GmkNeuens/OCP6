@@ -7,12 +7,19 @@ const navBarElement = document.querySelector('.navbar')
 const loginButton = document.querySelector('ul.navbar li a')
 const instagramIcon = document.querySelector('.instagramicon')
 const projectSectionTitle = document.querySelector('#portfolio h2')
+
 const modalDisplay = document.querySelector('.modalcontainer')
-const closeModalIcon = modalDisplay.querySelector('.closemodalicon')
+const modal2Display = document.querySelector('.modal2container')
+const closeModalIcon = document.querySelector('.closemodalicon')
+const closeModal2Icon = document.querySelector('.closemodal2icon')
+const goBackIcon = document.querySelector('.gobackicon')
 const modalGallery = document.querySelector('.modalgallery')
 const filtersContainer = document.querySelector('.filter', '.category')
 const gallery = document.querySelector('.gallery')
-const addPhotoButton = document.querySelector('.addphotobutton')
+const modalButton = document.querySelector('.modalbutton')
+const addFileButton = document.querySelector('.addfilebutton')
+const modalTitle = document.querySelector('.modaltitle')
+const modalForm = document.querySelector('.modalform')
 
 /* FONCTIONS */
 
@@ -39,14 +46,6 @@ function logoutButtonCreation () {
   logButtonElement.addEventListener('click', handleLogout)
 }
 
-function openModal () {
-  modalDisplay.classList.add('open')
-}
-
-function closeModal () {
-  modalDisplay.classList.remove('open')
-}
-
 function editButtonCreation () {
   let editButton = document.createElement('button')
   editButton.classList.add('editbutton')
@@ -57,7 +56,28 @@ function editButtonCreation () {
   projectSectionTitle.appendChild(editButton)
 }
 
+function openModal () {
+  modal2Display.classList.remove('open')
+  modalDisplay.classList.add('open')
+  modalGalleryDisplay()
+}
+
+function closeModal () {
+  modalDisplay.classList.remove('open')
+  modal2Display.classList.remove('open')
+}
+
+function openModal2 () {
+  modalDisplay.classList.remove('open')
+  modal2Display.classList.add('open')
+}
+
 closeModalIcon.addEventListener('click', closeModal)
+closeModal2Icon.addEventListener('click', closeModal)
+
+modalButton.addEventListener('click', openModal2)
+
+goBackIcon.addEventListener('click', openModal)
 
 async function worksImport () {
   const response = await fetch('http://localhost:5678/api/works/', {
@@ -66,7 +86,6 @@ async function worksImport () {
   let worksData = await response.json()
   worksData.forEach(projet => {
     projectsDisplay(projet)
-    modalGalleryDisplay(projet)
   })
 }
 
@@ -93,18 +112,49 @@ const projectsDisplay = projet => {
   figcaption.textContent = projet.title
 }
 
-const modalGalleryDisplay = projet => {
-  let figure = document.createElement('figure')
-  let img = document.createElement('img')
-  let deleteIcon = document.createElement('div')
-  modalGallery.appendChild(figure)
-  figure.appendChild(img)
-  img.src = projet.imageUrl
-  img.alt = projet.title
-  deleteIcon.classList.add('deleteicon')
-  deleteIcon.innerHTML =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="9" height="11" viewBox="0 0 9 11" fill="none"><path d="M2.71607 0.35558C2.82455 0.136607 3.04754 0 3.29063 0H5.70938C5.95246 0 6.17545 0.136607 6.28393 0.35558L6.42857 0.642857H8.35714C8.71272 0.642857 9 0.930134 9 1.28571C9 1.64129 8.71272 1.92857 8.35714 1.92857H0.642857C0.287277 1.92857 0 1.64129 0 1.28571C0 0.930134 0.287277 0.642857 0.642857 0.642857H2.57143L2.71607 0.35558ZM0.642857 2.57143H8.35714V9C8.35714 9.70915 7.78058 10.2857 7.07143 10.2857H1.92857C1.21942 10.2857 0.642857 9.70915 0.642857 9V2.57143ZM2.57143 3.85714C2.39464 3.85714 2.25 4.00179 2.25 4.17857V8.67857C2.25 8.85536 2.39464 9 2.57143 9C2.74821 9 2.89286 8.85536 2.89286 8.67857V4.17857C2.89286 4.00179 2.74821 3.85714 2.57143 3.85714ZM4.5 3.85714C4.32321 3.85714 4.17857 4.00179 4.17857 4.17857V8.67857C4.17857 8.85536 4.32321 9 4.5 9C4.67679 9 4.82143 8.85536 4.82143 8.67857V4.17857C4.82143 4.00179 4.67679 3.85714 4.5 3.85714ZM6.42857 3.85714C6.25179 3.85714 6.10714 4.00179 6.10714 4.17857V8.67857C6.10714 8.85536 6.25179 9 6.42857 9C6.60536 9 6.75 8.85536 6.75 8.67857V4.17857C6.75 4.00179 6.60536 3.85714 6.42857 3.85714Z" fill="white"/></svg>'
-  figure.appendChild(deleteIcon)
+function modalGalleryDisplay(){
+  modalGallery.innerHTML=""
+  fetch("http://localhost:5678/api/works")
+      .then(reponse => {
+          if(reponse.ok) {
+              return reponse.json();
+          }else{
+              throw new Error("echec appel API");
+          }
+      })
+      .then(data =>{
+          data.forEach((element, index) => {
+              const galleryPreview = document.createElement("figure");
+              galleryPreview.className ="galleryPreview";
+              const deleteIcon = document.createElement("div")
+              deleteIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="9" height="11" viewBox="0 0 9 11" fill="none"><path d="M2.71607 0.35558C2.82455 0.136607 3.04754 0 3.29063 0H5.70938C5.95246 0 6.17545 0.136607 6.28393 0.35558L6.42857 0.642857H8.35714C8.71272 0.642857 9 0.930134 9 1.28571C9 1.64129 8.71272 1.92857 8.35714 1.92857H0.642857C0.287277 1.92857 0 1.64129 0 1.28571C0 0.930134 0.287277 0.642857 0.642857 0.642857H2.57143L2.71607 0.35558ZM0.642857 2.57143H8.35714V9C8.35714 9.70915 7.78058 10.2857 7.07143 10.2857H1.92857C1.21942 10.2857 0.642857 9.70915 0.642857 9V2.57143ZM2.57143 3.85714C2.39464 3.85714 2.25 4.00179 2.25 4.17857V8.67857C2.25 8.85536 2.39464 9 2.57143 9C2.74821 9 2.89286 8.85536 2.89286 8.67857V4.17857C2.89286 4.00179 2.74821 3.85714 2.57143 3.85714ZM4.5 3.85714C4.32321 3.85714 4.17857 4.00179 4.17857 4.17857V8.67857C4.17857 8.85536 4.32321 9 4.5 9C4.67679 9 4.82143 8.85536 4.82143 8.67857V4.17857C4.82143 4.00179 4.67679 3.85714 4.5 3.85714ZM6.42857 3.85714C6.25179 3.85714 6.10714 4.00179 6.10714 4.17857V8.67857C6.10714 8.85536 6.25179 9 6.42857 9C6.60536 9 6.75 8.85536 6.75 8.67857V4.17857C6.75 4.00179 6.60536 3.85714 6.42857 3.85714Z" fill="white"/></svg>'
+              deleteIcon.classList.add('deleteicon')
+              const galleryPreviewImg = document.createElement("img");
+              galleryPreviewImg.src = element.imageUrl;
+              deleteIcon.addEventListener("click", function() {
+                  fetch(`http://localhost:5678/api/works/${element.id}`, {
+                      method: "DELETE",
+                      headers: {
+                          "Content-Type": "application/json",
+                          "Authorization": "Bearer " + localStorage.getItem("token"),
+                      },
+                  })
+                  .then(response => {
+                      if (response.ok) {
+                          galleryPreview.remove();
+                      } else {
+                          console.log("La suppression du projet a échoué.");
+                      }
+                  })
+                  .catch(error => {
+                      console.log("Une erreur s'est produite lors de la suppression du projet:", error);
+                  });
+              });
+              modalGallery.appendChild(galleryPreview);
+              galleryPreview.appendChild(deleteIcon);
+              galleryPreview.appendChild(galleryPreviewImg);
+          });
+      })
 }
 
 const filtersDisplay = category => {

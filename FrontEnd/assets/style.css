@@ -266,7 +266,7 @@ footer nav ul {
 	margin: 2em
 }
 
-.modalcontainer {
+.modalcontainer, .modal2container {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -282,6 +282,10 @@ footer nav ul {
 	display: flex;
 }
 
+.hide {
+	display: none;
+}
+
 .modalcontent {
 	position: relative;
 	margin: auto;
@@ -291,10 +295,18 @@ footer nav ul {
 	width: 630px;
 }
 
-.closemodalicon {
+.closemodalicon, .closemodal2icon {
 	position: absolute;
 	top: 30px;
 	right: 30px;
+	cursor: pointer;
+}
+
+.gobackicon {
+	display: flex;
+	position: absolute;
+	top: 30px;
+	left: 30px;
 	cursor: pointer;
 }
 
@@ -322,6 +334,7 @@ footer nav ul {
 	width: 100%;
 }
 
+
 .deleteicon {
 	position: absolute;
 	top: 6px;
@@ -335,18 +348,88 @@ footer nav ul {
 	cursor: pointer;
 }
 
+.modalform {
+	margin: 36px 85px 0 85px;
+	display: flex;
+	flex-direction: column;
+}
+
+#upload form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#upload input[type=text] {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#upload input[type=file]::file-selector-button {
+	border: none;
+	cursor: pointer;
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background: #CBD6DC;
+	color: #306685;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	box-shadow: none;
+}
+
+.addfilebutton {
+	width: 173px;
+}
+
+#upload label {
+	margin: 2em 0 1em 0;
+}
+
+.uploadimagecontainer {
+	background-color: #E8F1F6;
+	color: #444;
+}
+
+.previewdisplay {
+	padding: 20px 20px 20px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.uploadimagecontainer img {
+	display: none;
+	height: 200px;
+}
+
 hr {
 	margin: 0 105px 0 105px;
 	height: 1px;
 	background: #B3B3B3;
 }
 
-.addphotobutton {
+.modalbutton {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 237px;
 	height: 36px;
+	border: none;
 	border-radius: 60px;
 	background: #1D6154;
 	color: white;
@@ -354,4 +437,13 @@ hr {
 	font-size: 14px;
 	margin: 35px auto 15px;
 	cursor: pointer;
+}
+
+.addfilebutton {
+	display : flex;
+}
+
+.unclickable {
+	background: #A7A7A7;
+	cursor: none;
 }

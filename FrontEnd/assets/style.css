@@ -278,11 +278,11 @@ footer nav ul {
 	background: rgba(0, 0, 0, 0.30);
 }
 
-.open {
+.display {
 	display: flex;
 }
 
-.hide {
+.hidden {
 	display: none;
 }
 
@@ -395,6 +395,24 @@ footer nav ul {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.fileerrorcomment {
+	display: none;
+	color :#1D6154;
+	font-weight: bold;
+}
+
+.titleerrorcomment {
+	display: none;
+	color :#1D6154;
+	font-weight: bold;
+}
+
+.categoryerrorcomment {
+	display: none;
+	color :#1D6154;
+	font-weight: bold;
+}
+
 .addfilebutton {
 	width: 173px;
 	background: #1D6154;
@@ -411,8 +429,9 @@ footer nav ul {
 	cursor: pointer;
 }
 
-.addfilebutton :disabled {
+.addfilebutton:disabled {
 	background: #A7A7A7;
+	cursor: not-allowed;
 }
 
 #upload label {

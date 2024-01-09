@@ -18,7 +18,7 @@
 		<ul class="navbar">
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="./login.html">login</a></li>
+			<li class="loginbutton"><a href="./login.html">login</a></li>
 			<li class="instagramicon"><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -92,15 +92,18 @@
 							<input type="file" class="hiddenfileinput" accept="image/*" name="projectimage" id="image-file">
 						</div>
 						<p>jpg, png : 4mo max</p>
+						<p class="fileerrorcomment">Votre fichier doit être de type jpg, jpeg ou png et faire moins de 4 Mo</p>
 					</div>
 				</div>
 				<label for="projecttitle">Titre</label>
 				<input type="text" name="projecttitle" id="projecttitle">
+				<p class="titleerrorcomment">Votre titre doit contenir au moins 3 caractères</p>
 				<div class="categoryselector">
 					<label for="projectcategory">Catégorie</label>
 					<select name="projectcategory" id="projectcategory">
 						<option value="Default">Choisissez une catégorie</option>
 					</select>
+					<p class="categoryerrorcomment">Veuillez sélectionner une catégorie</p>
 				</div>
 				<hr>
 				<input type="submit" value="Valider" class="addfilebutton">
